@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script type="module" src="{{url_for('static', filename='manager.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<div>
+   <label for="username">Имя клиента</label><br>
+   <input id="username" type="text"><br>
+   
+    <button class="btn" value="K118">
+       Профориентационная консультация 
+    </button>
+    <button class="btn" value="Z118">
+       Забрать документы 
+     </button>
+     <button class="btn" value="P119">
+        Подать документы 
+     </button>
+     <button class="btn" value="D119">
+        Донести документы 
+     </button>
+ </div>
+{% endblock %}
+
+
