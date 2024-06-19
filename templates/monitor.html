@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script>
+	window.appConfig = {
+	  operations: {{ operations | tojson }}
+	};
+  
+  </script>
+	<p id="queue">Ожидайте: <span id="queue-list"></span></p>
+	<ul id="cabinet-assignments">
+		<!-- список назначений будет отображаться здесь -->
+	  </ul>
+	
+	<script type="module" src="{{url_for('static', filename='monitorScripts.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+{% endblock %}
+
+
