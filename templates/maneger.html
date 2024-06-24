@@ -4,18 +4,20 @@
 <script type="module" src="{{url_for('static', filename='manager.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <div>
-   <label for="username">Имя клиента</label><br>
-   <input id="username" type="text"><br>
+  <label for="username">Имя клиента</label><br>
+  <input id="username" type="text"><br>
 
-   <label for="birthdate">День рождение</label><br>
-   <input id="birthdate" type="date" value="2001-01-01"><br><br><br>
+  <label for="birthdate">День рождения</label><br>
+  <input id="birthdate" type="date" value="2001-01-01">
    
-   {% for operation in operations %}
-     <button class="btn" value="{{ operation.operation_code }}">
-       {{ operation.operation_name }}
-     </button>
-   {% endfor %}
- </div>
+  <div class="button-container">
+    {% for operation in operations %}
+          <button class="btn" value="{{ operation.operation_code }}">
+            {{ operation.operation_name }}
+          </button>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
 
 

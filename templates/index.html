@@ -2,9 +2,22 @@
 
 {% block content %}
 
-<a href="/monitor"> Вывод на экран</a><p> Это для вывода на монитор</p><br>
-<a href="/admin"> Админ панель</a><p>Панель для настройки</p><br>
-<a href="/maneger"> Менедежр</a><p> Это человек который встречает человека у входа</p><br>
-<a href="/login"> Вход для оператов </a>
+<div class="button-container">
+    <a href="/monitor">
+        <button class="btn-index">Вывод на экран</button>
+    </a>
+    
+    <a href="/admin">
+        <button class="btn-index">Админ панель</button>
+    </a>
+    
+    <a href="/maneger">
+        <button class="btn-index"> Менедежр</button>
+    </a>
+    
+    <a href="/login">
+        <button class="btn-index"> Вход для оператов </button>
+    </a>
+</div>
 
 {% endblock %}

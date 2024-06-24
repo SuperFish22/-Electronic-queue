@@ -1,9 +1,9 @@
 $(document).ready(function() {
-  $(".navbar-text").text(getTime());
+  $("#time").text(getTime());
 })
 
 setInterval(() => {
-  $(".navbar-text").text(getTime());
+  $("#time").text(getTime());
 }, 10 * Math.pow(10, 3));
 
 function getDayOfTheWeek(i) {

@@ -14,54 +14,71 @@ body{
 
 .navbar{
 	background-color: #ffffff;
-	display: block;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
-	height: 11vw;
-	text-align: center;
+	height: 25%;
 	box-shadow: -3vw 0.01vw 2vw 0.01vw #000000;
 	position: absolute;
 	margin-bottom: 1vw;
 }
 
-.navbar-text {
-	position: absolute;
-	color: black;
-	background: #ffffff;
-	border-color: #d4cece;
-	font-size: 2vw;
-	left: 45vw;
+.navbar-logo {
+	width: 11vw;
+	margin-left: 5%;
+	display: flex;
+	justify-content: center;
 }
 
-#navbar-title {
-	width: 45%;
-	color: #000000;
-	white-space: nowrap;
-	font-size: 2.5vw;
+.navbar-title {
+	display: flex;
+	margin: 0 auto;
+	margin-right: 35%;
+	margin-bottom: 10vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+#title {
+	font-size: 6vw;
+	margin-bottom: 0.5vw;
+}
+
+#time {
+	font-size: 3vw;
 }
 
 .navbar span, .navbar .navbar-brand, #operators_queue .container:not(:first-child) .row p{
 	color: rgb(0, 0, 0);
 }
 
-#logo {
-	height: 5vw;
-	position: relative;
-	left: 2vw;
-	top: 15%;
-}
-
 #page-content {
-	position: absolute;
-	top: 12.5vw;
+	position:fixed;
+	top: 30%;
 	left: 2.5vw;
 	width: 94vw;
 }
 
 #login_form {
-	background-color: #ffffff;
-	border-color: #d4cece;
-	border-radius: 1vw;
-	width: 33%
+    background-color: #ffffff;
+    border-color: #d4cece;
+    border-radius: 1vw;
+    width: 33%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mb-3 {
+    margin-bottom: 20px; /* Add margin between form elements */
 }
 
 #customers_queue{
@@ -132,4 +149,94 @@ body{
 	}
 }
 
+:root {
+	/* Основной цвет кнопки */
+	--primary: hsl(176, 100%, 78%);
+	/* Светлый цвет для градиента */
+	--light: hsl(175, 100%, 90%);
+	/* Цвет кнопки при наведении */
+	--primary-hover: hsl(176, 100%, 35%);
+  }
+  
+  button {
+	/* Убираем стандартную границу */
+	border: 0;
+	/* Скругляем углы кнопки */
+	border-radius: 100vw;
+	/* Устанавливаем относительное позиционирование для использования псевдоэлементов */
+	position: relative;
+	/* Толщина шрифта */
+	font-weight: 500;
+	/* Изменяем курсор на указатель при наведении на кнопку */
+	cursor: pointer;
+	/* Тень */
+	box-shadow: 1px 2px 5px hsl(0, 0%, 0%, 0.25);
+	/* Внутренние отступы */
+	padding: 0.5em;
+	text-align: center;
+	
+	
+	/* Fix: Close the background-image property */
+	background-image: 
+	  linear-gradient(hsl(0 0% 100% / 0.85), transparent 10px),
+	  linear-gradient(hsl(0 0% 100% / 0.25) 10px, transparent 10px),
+	  radial-gradient(
+		circle at 10px 5px,
+		hsl(0 0% 100% / 0.25) 5px,
+		transparent 5px
+	  ),
+	  radial-gradient(
+		circle at 0px 5px,
+		hsl(0 0% 100% / 0.25) 5px,
+		transparent 5px
+	  ),
+	  linear-gradient(var(--primary), var(--light));
+  }
+  
+  button::before {
+	/* Создаем пустой псевдоэлемент */
+	content: "";
+	/* Позиционирование относительно родительского элемента */
+	position: absolute;
+	/* Помещаем псевдоэлемент за кнопкой */
+	z-index: -1;
+	/* Смещаем внутрь на 1px с каждой стороны */
+	inset: -1px;
+	/* Центрируем по горизонтали */
+	margin-inline: auto;
+	/* Линейный градиент для фона */
+	background: linear-gradient(hsl(258, 74%, 30%), hsl(0, 0%, 38%));
+	/* Скругляем углы */
+	border-radius: 20vw;
+  }
+  
+  button:hover {
+	background-image: 
+	  linear-gradient(hsl(0 0% 100% / 0.85), transparent 10px),
+	  linear-gradient(hsl(0 0% 100% / 0.25) 10px, transparent 10px),
+	  radial-gradient(
+		circle at 10px 5px,
+		hsl(0 0% 100% / 0.25) 5px,
+		transparent 5px
+	  ),
+	  radial-gradient(
+		circle at 0px 5px,
+		hsl(0 0% 100% / 0.25) 5px,
+		transparent 5px
+	  ),
+	  linear-gradient(var(--primary-hover), var(--light));
+  }
 
+.button-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1%;
+	margin-top: 2vh;
+}
+
+.btn-index {
+	font-size: 3.4vh;
+	width: 20vw;
+	text-align: center;
+}

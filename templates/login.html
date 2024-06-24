@@ -3,17 +3,17 @@
 
 {% block content %}
     
-	<form action="/login" method="post" id="login_form">
-    <center>
+<form action="/login" method="post" id="login_form">
+    <div class="form-container">
         <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Логин" type="text" id="user">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Логин" type="text" id="user">
         </div>
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" name="password" placeholder="Пароль" type="password" id="password">
+            <input class="form-control" name="password" placeholder="Пароль" type="password" id="password">
         </div>
-            <button class="btn btn-primary" type="submit" id="button">Войти</button>
-        </center>
+        <button class="btn btn-primary" type="submit" id="button">Войти</button>
         {{error}}
-    </form>
+    </div>
+</form>
     
 {% endblock %}

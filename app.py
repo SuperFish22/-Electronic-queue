@@ -277,9 +277,14 @@ def add_row(table_name):
         return redirect(url_for("show_table", table_name=table_name))
     return render_template("add.html", table=table)
 
+# if __name__ == '__main__':
+#     with app.app_context():
+#         db.create_all()
+#     socketio.run(app,'172.10.30.89',5000)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    socketio.run(app,'172.10.30.89',5000)
+    socketio.run(app)
 
 # я заебался 
