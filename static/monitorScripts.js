@@ -15,26 +15,66 @@ socket.on('queue_update', function(data) {
   document.getElementById("queue-list").innerHTML = queueList.join(", ");
 });
 
+// socket.on('queue_update', function(data) {
+//   console.log(data);
+  // const assignmentsList = document.getElementById('cabinet-assignments');
+  // assignmentsList.innerHTML = ''; // clear the list
+
+  // data.queue.filter((item) => item.status === 'True').forEach((item) => {
+  //   console.log(item);
+  //   let cabinetText = operations.find((operations) => operations.operation_code === item.operation);
+  //   console.log(cabinetText);
+  //   if (cabinetText) {
+  //     cabinetText = ` в кабинете ${cabinetText.cabinet}`;
+  //   } else {
+  //     cabinetText = '';
+  //   }
+  //   // const assignmentHTML = `<li>${item.username} ${item.number} ${cabinetText}</li>`;
+  // assignmentsList.innerHTML += assignmentHTML;
+
+  
+let uniqueData = [];
+let tableRows = {};
+
 socket.on('queue_update', function(data) {
   console.log(data);
-  const assignmentsList = document.getElementById('cabinet-assignments');
-  assignmentsList.innerHTML = ''; // clear the list
 
-  data.queue.filter((item) => item.status === 'True').forEach((item) => {
-    console.log(item);
+  const table = document.getElementById('queue-table');
+
+  data.queue.forEach((item) => {
     let cabinetText = operations.find((operations) => operations.operation_code === item.operation);
-    console.log(cabinetText);
-    if (cabinetText) {
-      cabinetText = ` в кабинете ${cabinetText.cabinet}`;
-    } else {
-      cabinetText = '';
+
+    if (item.status === 'True') {
+      if (!uniqueData.find((uniqueItem) => uniqueItem.number === item.number)) {
+        uniqueData.push(item);
+
+        const row = table.insertRow(-1);
+        row.innerHTML = `
+          <td>${item.username}</td>
+          <td>${item.number}</td>
+          <td>${cabinetText.cabinet}</td>
+        `;
+        tableRows[item.number] = row;
+      }
+    } else if (item.status === 'False') {
+      if (uniqueData.find((uniqueItem) => uniqueItem.number === item.number)) {
+        const index = uniqueData.indexOf(item);
+        if (index > -1) {
+          uniqueData.splice(index, 1);
+        }
+
+        if (tableRows[item.number]) {
+          table.deleteRow(tableRows[item.number].rowIndex);
+          delete tableRows[item.number];
+        }
+      }
     }
-    const assignmentHTML = `<li>Клиент ${item.number} ${cabinetText}</li>`;
-    assignmentsList.innerHTML += assignmentHTML;
   });
 });
+
 /*
 socket.on('queue_update', function(data) {
     const queueList = data.queue.map((item) => `${item.number}. ${item.username}`);
     document.getElementById("queue-list").innerHTML = queueList.join(", ");
 });*/
+

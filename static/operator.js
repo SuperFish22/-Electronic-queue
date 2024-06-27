@@ -31,7 +31,7 @@ socket.on('queue_update', function(json) {
   data[0].forEach(user => {
     //console.log(user)
 
-    if (operators.operations.split('').some(letter => user.operation.includes(letter)) && user.status === 'waiting') {
+    if (operators.operations.split('').some(letter => user.operation.includes(letter)) && user.status === 'waiting' || user.status === 'True') {
       const optionElement = document.createElement('option');
       optionElement.value = user.number;
       optionElement.textContent = user.number;
@@ -43,9 +43,11 @@ socket.on('queue_update', function(json) {
 // Для осуществления выбора и вывода информации по выбранному персонажу
 const userSelectElement = document.getElementById('user-select');
 userSelectElement.addEventListener('change', function() {
+
   const userId = userSelectElement.value;
   currentTask = userSelectElement.value;
   document.getElementById('current-task').textContent = `Вы выбрали: ${userId}`;
+
   data[0].forEach(user => {
     if (user.number === parseInt(userId)) {
       operations.forEach(operation => {
@@ -61,7 +63,21 @@ userSelectElement.addEventListener('change', function() {
         ФИО: ${user.username}
       `;
       document.getElementById('user-info').textContent = userInfo;
-      
+
+      const users = [user.number, opr, user.birthdate, user.username];
+      const table = document.getElementById('operator-table');
+      const newColumn = table.insertCell(-1); // Добавляем столбец в конец таблицы
+
+      // Удаляем все ячейки из нового столбца
+      // while (newColumn.firstChild) {
+      //   newColumn.removeChild(newColumn.firstChild);
+      // }
+
+      for (let i = 0; i < users.length; i++) {
+        const row = table.rows[i];
+        const cell = row.insertCell(1);
+        cell.innerHTML = users[i];
+      }
     };
   });
 });
@@ -75,14 +91,12 @@ $('#assign-cabinet').on('click', function() {
     if (!isFinished) {
       socket.emit('assign_cabinet', { number: currentTask, cabinetId: currentCabinet });
       console.log(`Кабинет ${currentCabinet} назначен пользователю ${currentTask}`);
-      $(this).text('Закончить');
-      $(this).css('background-color', 'red');
+      $(this).text('Закончить приём');
       isFinished = true;
     } else {
       socket.emit('unassign_cabinet', { number: currentTask, cabinetId: currentCabinet });
       console.log(`Кабинет ${currentCabinet} отменен для пользователя ${currentTask}`);
       $(this).text('Назначить кабинет');
-      $(this).css('background-color', 'green');
       isFinished = false;
     }
   } else {

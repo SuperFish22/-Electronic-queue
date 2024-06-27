@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Конфигурируем базу данных
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///queue.db'
-app.config['SECRET_KEY'] = 'ecret!'
+app.config['SECRET_KEY'] = 'secret!'
 
 # Создаем экземпляр SocketIO
 socketio = SocketIO(app)
@@ -108,8 +108,8 @@ queue = []
 # номерация очереди
 client_number = 1
 
-# Работаем с socet
-# проверка подключение
+# Работаем с socket
+# проверка подключения
 @socketio.on('connect')
 def connect(auth):
     global queue,operators
@@ -168,7 +168,9 @@ def pers(json):
 # обнавление очереди
 @socketio.on('queue_update')
 def queue_update():
+    
     emit('queue_update', {'queue': queue})
+    print (queue)
 
 @socketio.on('task_assigned')
 def task_assigned(task):
@@ -203,11 +205,12 @@ def assign_cabinet(data):
     queue_item = QueueModel.query.get(number)
     if queue_item:
         queue_item.status = 'False'
-        queue_item.number = 0
         db.session.commit()
         queue = get_queue_items()
     queue_data = [{'number': item.number, 'username': item.username, 'birthdate': item.birthdate.strftime('%Y-%m-%d'), 'operation': item.operation,'status': item.status} for item in queue]
     emit('queue_update', {'queue': queue_data}, broadcast=True)# обновление списка очереди
+
+
 
 # Тут всякое говно с адресацией    
 @app.route('/')
