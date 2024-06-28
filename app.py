@@ -148,8 +148,7 @@ def pers(json):
         # Найдите следующий доступный номер в очереди
         while True:
             if any(item.number == client_number for item in get_queue_items()):
-                client_number += 1
-                if client_number > 100:
+                if client_number > 99:
                     client_number = 1
             else:
                 break
@@ -288,6 +287,6 @@ def add_row(table_name):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    socketio.run(app)
+    socketio.run(app) #, host='172.10.31.83', port=5000
 
 # я заебался 

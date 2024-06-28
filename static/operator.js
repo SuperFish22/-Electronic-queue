@@ -64,25 +64,56 @@ userSelectElement.addEventListener('change', function() {
       `;
       document.getElementById('user-info').textContent = userInfo;
 
-      const users = [user.number, opr, user.birthdate, user.username];
-      const table = document.getElementById('operator-table');
-      const newColumn = table.insertCell(-1); // Добавляем столбец в конец таблицы
-
       // Удаляем все ячейки из нового столбца
       // while (newColumn.firstChild) {
       //   newColumn.removeChild(newColumn.firstChild);
       // }
 
+      const users = [user.number, opr, user.birthdate, user.username];
+
       for (let i = 0; i < users.length; i++) {
         const row = table.rows[i];
-        const cell = row.insertCell(1);
+        const cell = row.insertCell(1); // insert a new cell at the second column (index 1)
         cell.innerHTML = users[i];
       }
     };
   });
 });
- 
 
+
+function generateTable(userNumber, opr, userBirthdate, userUsername) {
+  const oldTable = document.getElementById("operator-table");
+  if (oldTable) {
+    oldTable.parentNode.removeChild(oldTable);
+  }
+
+  const tableHtml = `
+    <table id="operator-table" style="margin-bottom: 2vh;">
+      
+        <tr>
+          <th>Талон</th>
+          <td>${userNumber}</td>
+        </tr>
+        <tr>
+          <th>Операция</th>
+          <td>${opr}</td>
+        </tr>
+        <tr>
+          <th>День рождения</th>
+          <td>${userBirthdate}</td>
+        </tr>
+        <tr>
+          <th>Имя</th>
+          <td>${userUsername}</td>
+        </tr>
+      
+    </table>
+  `;
+  const tableContainer = document.getElementById("table_container")
+  tableContainer.innerHTML = tableHtml;
+}
+
+generateTable(user.number, opr, user.birthdate, user.username)
 
 var isFinished = false;
 
