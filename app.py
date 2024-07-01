@@ -148,6 +148,7 @@ def pers(json):
         # Найдите следующий доступный номер в очереди
         while True:
             if any(item.number == client_number for item in get_queue_items()):
+                client_number += 1
                 if client_number > 99:
                     client_number = 1
             else:
