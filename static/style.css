@@ -246,60 +246,53 @@ border: hidden;
 }
 
 @media only screen and (max-width: 1200px){
-	/* .button-container {
-		flex-direction: column;
-		align-items: center;
-		gap: 1vh;
-		margin-top: 2vh;
-	} */
-
-	/* .wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 25px 0;
-	}
-	
-	.button-wrapper {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
-	}
-
-	#button5 {
-	background-image: linear-gradient(
-		68.7deg,
-		rgba(48, 51, 154, 1) 13.2%,
-		rgb(137, 205, 250) 29.8%,
-		rgba(0, 180, 167, 1) 48.9%,
-		rgba(174, 101, 214, 1) 68.2%,
-		rgb(255, 115, 0) 86.4%
-	);
-	}
-
+	  
 	button {
-	border-radius: 50px;
-	border: none;
-	color: #fff;
-	text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.15);
-	font-family: "Poppins", sans-serif;
-	font-weight: 700;
-	font-size: 30px;
+	width: 50vw;
+	border: 0;
+	border-radius: 100vw;
 	position: relative;
-	text-decoration: none;
-	overflow: hidden;
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px,
-		rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -4px 0px inset;
-	flex-shrink: 0;
+	font-weight: 500;
+	padding: 0.5em;
+	text-align: center;
+	margin: 1vh;
+	background-color: #00b4a7;
 	}
-	span {
-		display: block;
-		padding: 12px 30px;
+
+	.button-container {
+		display: grid;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1%;
+		margin-top: 2vh;
 	}
 
 	.active-text {
-	position: absolute;
-	} */
+		font-size: 4vh;
+	}
 
-	
+	#login_form {
+		background-color: #ffffff;
+		border-color: #d4cece;
+		border-radius: 1vw;
+		width: 50%;
+		margin-top: 1vh;
+		margin-bottom: 2vh;
+		padding: 20px;
+	}
+
+	label {
+		font-size: 3vh;
+	}
+
+	.mb-2 {
+		font-size: 2vh;
+		width: 99%;
+		margin-top: 1vh;
+		margin-bottom: 1vh;
+	}
+
+	#manager-btn {
+		font-size: 2vh;
+	}
 }

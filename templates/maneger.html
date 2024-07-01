@@ -16,7 +16,7 @@
   <div class="button-container">
     {% for operation in operations %}
           <button class="btn" value="{{ operation.operation_code }}">
-            {{ operation.operation_name }}
+            <p id="manager-btn">{{ operation.operation_name }}</p>
           </button>
     {% endfor %}
   </div>

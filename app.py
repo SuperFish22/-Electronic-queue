@@ -288,6 +288,6 @@ def add_row(table_name):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    socketio.run(app) #, host='172.10.31.83', port=5000
+    socketio.run(app, host='172.10.31.83', port=5000)
 
 # я заебался 
